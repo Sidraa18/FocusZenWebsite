@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Room </title>
+    <link rel="shortcut icon" type="image/png" href="FEATURES/study.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="studyroom.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
+
+</head>
+<body>
+
+  <button id="show-sidebars-btn" style="display: none;">Show Sidebars</button>
+    <!-- Snowflake container -->
+    <div class="snow-container"></div>
+ <!--timer-->
+ <div id="pomodoro">
+    <div id="clock">
+      <div id="timer">
+        <div id="title">Ready?</div>
+        <div id="countdown">
+          <span id="minutes">30</span>
+          <span id="seconds">00</span>
+        </div>
+        <div id="controls" class="reset">
+          <div id="start"><i class="fas fa-play"></i> Start</div>
+          <div id="pause"><i class="fas fa-pause"></i> Pause</div>
+          <div id="reset"><i class="fas fa-sync-alt"></i> Reset</div>
+        </div>
+      </div>
+    </div>
+    <div id="options">
+      <div id="session">
+        <i id="incrSession" class="fas fa-angle-double-up"></i>
+        <span class="option-title">Session</span>
+        <input id="sessionInput" type="number" value="30" max="60" min="5">
+        <i id="decrSession" class="fas fa-angle-double-down"></i>
+      </div>
+      <div id="break">
+        <i id="incrBreak" class="fas fa-angle-double-up"></i>
+        <span class="option-title">Break</span>
+        <input id="breakInput" type="number" value="5" max="10" min="1">
+        <i id="decrBreak" class="fas fa-angle-double-down"></i>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Sidebar for new features -->
+
+
+<div class="sidebar" id="main-sidebar">
+ 
+     
+   
+
+  <!-- Add a button to toggle the snowflakes -->
+<button id="snowflake-toggle">Stop Snowflakes <span>❄️</span></button>
+    <!-- Ambient Sounds Section -->
+    <div class="ambient-sounds">
+        <h3>Ambient Sounds</h3>
+        <label>
+            <input type="radio" name="ambient-sound" value="forest"> Forest​🌴​
+        </label>
+        <label>
+            <input type="radio" name="ambient-sound" value="rain"> Rain​🌧️​
+        </label>
+        <label>
+            <input type="radio" name="ambient-sound" value="ocean"> Ocean🌊​
+        </label>
+        <label>
+            <input type="radio" name="ambient-sound" value="park"> Park​🎡​​
+        </label>
+     
+        <div class="volume-control">
+            <label for="ambient-volume">Ambient Volume</label>
+            <input type="range" id="ambient-volume" min="0" max="100" value="50">
+        
+    <!-- Pause and Resume buttons for ambient sound -->
+<button class="btn btn-secondary" style="margin-bottom: 55px; " id="pause-button" >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause" viewBox="0 0 16 16">
+        <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5m4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5"/>
+    </svg>
+</button>
+<button class="btn btn-secondary" id="resume-button" style="display: none;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+        <path d="M10.804 8 5 4.633v6.734L10.804 8Z"/>
+    </svg>
+</button>
+</div>
+</div>
+<!-- Music Player Section -->
+<div class="music-player">
+  <h3>Music Player</h3>
+  <div class="music-controls">
+    <div id="song-list">
+      <!-- Song list will be generated dynamically -->
+    </div>      
+    <audio id="music-player" controls>
+      <source src="" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+
+  <div class="volume-control">
+    <label for="music-volume">Music Volume</label>
+    <input type="range" id="music-volume" min="0" max="100" value="50">
+  </div>
+
+    
+  </div>
+  
+
+    <!-- Themes Section -->
+    <div class="themes">
+        <h3>Choose Theme</h3>
+        <label>
+            <input type="radio" name="background-theme" value="cafe"> Cafe <span>☕</span>
+        </label>
+        <label>
+          <input type="radio" name="background-theme" value="winter"> Winter <span>☃️</span>
+      </label>
+      <label>
+        <input type="radio" name="background-theme" value="waves"> Waves <span>🌊</span>
+    </label>
+    <label>
+      <input type="radio" name="background-theme" value="street">Street <span>🌉</span>
+    </label>
+    <label>
+    <input type="radio" name="background-theme" value="moon">Moon <span>🌚</span>
+</label>
+<label>
+  <input type="radio" name="background-theme" value="computer"> Computer <span>💻</span>
+
+</label>
+<label>
+<input type="radio" name="background-theme" value="office"> Office <span>🖥️</span>
+  
+</label>
+<label>
+<input type="radio" name="background-theme" value="sunset"> Sunset <span>🌅</span>
+  
+</label>
+<label >
+<input type="radio" name="background-theme" value="room"> Desktop<span>👾</span>
+  
+</label>
+  <label >
+<input type="radio" name="background-theme" value="bedroom">Bedroom <span>⚗️</span>
+  
+</label>
+<label >
+<input type="radio" name="background-theme" value="firewatch"> Firewatch <span>🌄</span>
+  
+</label>
+<label >
+<input type="radio" name="background-theme" value="nightcafe"> Nightcafe<span>🌜</span>
+  
+</label>
+    
+    </div>
+   
+
+
+
+  <div  id="left-sidebar">
+    <button id="hide-sidebars-btn">Hide Sidebars</button>
+    <div id="quote-container">
+      <p id="quote"></p>
+      <button onclick="generateQuote()">Generate <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shuffle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.6 9.6 0 0 0 7.556 8a9.6 9.6 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.6 10.6 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.6 9.6 0 0 0 6.444 8a9.6 9.6 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5"/>
+        <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192m0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192"/>
+      </svg></button>
+  </div>
+  
+  
+  <div class="container">
+    <div class="stats-container">
+    <div class="details">
+    <h1>My Tasks</h1>
+    <p>Keep it up!</p>
+    <div id="progressBar">
+    <div id="progress"></div>
+    </div>
+    </div>
+    <div class="stats-numbers">
+    <p id="numbers">0/0</p>
+    </div>
+    </div>
+    <form action="">
+        <input type="text"  id="taskInput" placeholder="Write your task here">
+        <button id="newTask" type="submit">+</button>
+    </form>
+    <ul id="task-list"> </ul>
+    
+ </div>
+ 
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", () => {
+        const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+    
+        if (storedTasks) {
+            storedTasks.forEach((task) => tasks.push(task));
+            updateTaskList();
+            updateStats();
+        }
+    });
+    
+    let tasks = [];
+    
+    const saveTasks = () => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    };
+    
+    const addTask = () => {
+        const taskInput = document.getElementById("taskInput");
+        const text = taskInput.value.trim();
+    
+        if (text) {
+            tasks.push({ text: text, completed: false });
+            taskInput.value = "";
+            updateTaskList();
+            saveTasks();
+        }
+    };
+    
+    const toggleTaskComplete = (index) => {
+        tasks[index].completed = !tasks[index].completed;
+        updateTaskList();
+        updateStats();
+        saveTasks();
+    };
+    
+    const deleteTask = (index) => {
+        tasks.splice(index, 1);
+        updateTaskList();
+        updateStats();
+        saveTasks();
+    };
+    
+    const editTask = (index) => {
+        const taskInput = document.getElementById("taskInput");
+        taskInput.value = tasks[index].text;
+    
+        tasks.splice(index, 1);
+        updateTaskList();
+        updateStats();
+        saveTasks();
+    };
+    
+    const updateStats = () => {
+        const completedTasks = tasks.filter(task => task.completed).length;
+        const totalTasks = tasks.length;
+    
+        // Update the numbers display
+        document.getElementById("numbers").innerText = `${completedTasks} / ${totalTasks}`;
+    
+        // Calculate progress
+        let progress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+    
+        // Update the progress bar
+        const progressBar = document.getElementById("progress");
+        progressBar.style.width = `${progress}%`;
+    
+        // Reset or update the color if there's no progress or tasks
+        if (progress === 0) {
+            progressBar.style.backgroundColor = "transparent";  // Hide the color if no progress
+        } else {
+            progressBar.style.backgroundColor = ""; // Use default color if there's progress
+        }
+    
+        // Trigger confetti if all tasks are completed
+        if (tasks.length && completedTasks === totalTasks) {
+            blaskConfetti();
+        }
+    };
+    
+    const updateTaskList = () => {
+        const taskList = document.getElementById("task-list");
+        taskList.innerHTML = "";
+    
+        tasks.forEach((task, index) => {
+            const listItem = document.createElement('li');
+    
+            listItem.innerHTML = `
+            <div class="taskItem">
+                <div class="task ${task.completed ? 'completed' : ''}">
+                    <input type="checkbox" class="checkbox" ${task.completed ? "checked" : ""} />
+                    <p>${task.text}</p>
+                </div>
+                <div class="icons">
+                    <img src="FEATURES/edit.png" onclick="editTask(${index})" />
+                    <img src="FEATURES/bin.png" onclick="deleteTask(${index})" />
+                </div>
+            </div>
+            `;
+    
+            listItem.querySelector('.checkbox').addEventListener('change', () => toggleTaskComplete(index));
+            taskList.appendChild(listItem);
+        });
+    
+        updateStats();
+    };
+    
+    document.getElementById("newTask").addEventListener("click", function(e) {
+        e.preventDefault();
+        addTask();
+    });
+    
+    const blaskConfetti = () => {
+        const count = 200,
+            defaults = {
+                origin: { y: 0.7 },
+            };
+    
+        function fire(particleRatio, opts) {
+            confetti(
+                Object.assign({}, defaults, opts, {
+                    particleCount: Math.floor(count * particleRatio),
+                })
+            );
+        }
+    
+        fire(0.25, {
+            spread: 26,
+            startVelocity: 55,
+        });
+    
+        fire(0.2, {
+            spread: 60,
+        });
+    
+        fire(0.35, {
+            spread: 100,
+            decay: 0.91,
+            scalar: 0.8,
+        });
+    
+        fire(0.1, {
+            spread: 120,
+            startVelocity: 25,
+            decay: 0.92,
+            scalar: 1.2,
+        });
+    
+        fire(0.1, {
+            spread: 120,
+            startVelocity: 45,
+        });
+    };
+    </script>
+
+
+
+
+
+    <script>
+  // Get the toggle button and snowflake container elements
+const toggleButton = document.getElementById('snowflake-toggle');
+const snowContainer = document.querySelector('.snow-container');
+
+// Flag to track whether snowflakes are enabled or not
+let snowflakesEnabled = true;
+let maxSnowflakes = 50; // adjust this value to set the maximum number of snowflakes
+let currentSnowflakes = 0;
+function createSnowflake() {
+
+  if (currentSnowflakes >= maxSnowflakes) {
+    return;
+  }
+
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+    snowflake.textContent = '❄'; // Snowflake character
+    snowflake.style.left = Math.random() * window.innerWidth + 'px';
+    snowflake.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random fall speed
+    snowflake.style.fontSize = Math.random() * 10 + 10 + 'px'; // Random size
+    snowflake.style.opacity = Math.random(); // Random opacity
+    snowflake.style.top = '-20px'; // Random blur
+
+    snowContainer.appendChild(snowflake);
+    currentSnowflakes++;
+    snowflake.addEventListener('animationend', () => {
+        snowflake.remove();
+        currentSnowflakes--;
+    });
+}
+
+// Function to clear snowflakes
+function clearSnowflakes() {
+    snowContainer.innerHTML = '';
+}
+
+// Generate snowflakes at intervals
+let snowflakeIntervalId = setInterval(createSnowflake, 500);
+
+// Toggle snowflakes on and off
+toggleButton.addEventListener('click', () => {
+    if (snowflakesEnabled) {
+        clearSnowflakes();
+        clearInterval(snowflakeIntervalId);
+        snowflakesEnabled = false;
+    } else {
+        snowflakeIntervalId = setInterval(createSnowflake,500);
+        snowflakesEnabled = true;
+    }
+});
+
+//Timer JS
+$(() => {
+
+let $audio = $("audio"), // from https://tide.moreless.io/en/
+    $theme = $(".theme"),
+    $title = $("#title"),
+    $controls = $("#controls"),
+    $options = $("#options"),
+    $minutes = $("#minutes"),
+    $seconds = $("#seconds"),
+    $start = $("#start"),
+    $pause = $("#pause"),
+    $reset = $("#reset"),
+    $incrSession = $("#incrSession"),
+    $sessionInput = $("#sessionInput"),
+    $decrSession = $("#decrSession"),
+    $incrBreak = $("#incrBreak"),
+    $breakInput = $("#breakInput"),
+    $decrBreak = $("#decrBreak"),
+    breakLength = 5 * 60,
+    breakMax = 100,
+    breakMin = 1,
+    sessionLength = 30 * 60,
+    sessionMax =1000,
+    sessionMin = 5,
+    sessionNum = 0,
+    countdown,
+    countType,
+    remainingTime = sessionLength;
+
+init();
+
+function init(){
+  $audio.prop("volume", 0);
+  $incrSession.click(() => incrSession());
+  $decrSession.click(() => decrSession());
+  $incrBreak.click(() => incrBreak());
+  $decrBreak.click(() => decrBreak());
+  $sessionInput.on("change", e => updateSession(e.target.value));
+  $breakInput.on("change", e => updateBreak(e.target.value));
+  $start.click(() => { if (countType === "break"){ startBreak(); } else { startSession(); } });
+  $pause.click(() => pause());
+  $reset.click(() => reset());
+  $theme.click(e => audioSelect(e));
+ 
+}
+function startSession(){
+  sessionNum++;
+  countType = "session";
+  $options.slideUp(143);
+  $controls.removeClass().addClass("started");
+  $title.fadeOut(43, function(){
+    $(this).html("Session " + sessionNum).fadeIn();
+  });
+  $audio.animate({volume: 1}, 1000);
+  start(remainingTime || sessionLength);
+}
+function startBreak(){
+  countType = "break";
+  $title.fadeOut(43, function(){
+    $(this).html("Break " + sessionNum).fadeIn();
+  });
+  $audio.animate({volume: 0}, 5000);
+  start(remainingTime || breakLength);
+}
+function start(timeLeft){
+  clearInterval(countdown);
+  countdown = setInterval(() => {
+    timeLeft--;
+    remainingTime = timeLeft;
+    let minLeft = Math.floor(timeLeft / 60),
+        secLeft = timeLeft - minLeft * 60;
+    updateMinutes(minLeft);
+    updateSeconds(secLeft < 10 ? "0" + secLeft : secLeft);
+    if (timeLeft < 1){
+      if (countType === "session"){
+        startBreak(breakLength);
+      } else {
+        startSession();
+      }
+    }
+  }, 1000);
+}
+function pause(){
+  sessionNum--;
+  $audio.animate({volume: 0}, 1000);
+  clearInterval(countdown);
+  $options.slideDown(143);
+  $controls.removeClass().addClass("paused");
+  $title.fadeOut(43, function(){
+    $(this).html("Paused").fadeIn();
+  });
+}
+function reset(){
+  clearInterval(countdown);
+  updateMinutes(sessionLength / 60);
+  updateSeconds("00");
+  countType = undefined;
+  $controls.removeClass().addClass("reset");
+  $title.html("Ready?");
+  remainingTime = sessionLength;
+}
+function incrSession(){
+  let num = Number($sessionInput.val());
+  num = num + (num === sessionMax ? 0 : 1);
+  sessionLength = num * 60;
+  updateSession(num);
+  updateMinutes(num);
+  updateSeconds("00");
+  reset();
+}
+function decrSession(){
+  let num = Number($sessionInput.val());
+  num = num - (num === sessionMin ? 0 : 1);
+  sessionLength = num * 60;
+  updateSession(num);
+  updateMinutes(num);
+  updateSeconds("00");
+  reset();
+}
+function incrBreak(){
+  let num = Number($breakInput.val());
+  num = num + (num === breakMax ? 0 : 1);
+  breakLength = num * 60;
+  updateBreak(num);
+  reset();
+}
+function decrBreak(){
+  let num = Number($breakInput.val());
+  num = num - (num === breakMin ? 0 : 1);
+  breakLength = num * 60;
+  updateBreak(num);
+  reset();
+}
+function updateMinutes(num){
+  $minutes.text(num);
+}
+function updateSeconds(num){
+  $seconds.text(num);
+}
+function updateSession(num){
+  num = num < sessionMin ? sessionMin : num > sessionMax ? sessionMax : num;
+  $sessionInput.val(num).blur();
+  updateMinutes(num);
+  updateSeconds("00");
+  sessionLength = num * 60;
+  reset();
+}
+function updateBreak(num){
+  $breakInput.val(num < breakMin ? breakMin : num > breakMax ? breakMax : num).blur();
+  breakLength = num * 60;
+  reset();
+}
+
+
+});
+
+
+
+
+// JavaScript code for ambient sounds, music player, and themes
+
+        // Ambient Sounds Control
+        const ambientSounds = document.querySelectorAll('input[name="ambient-sound"]');
+        const ambientVolumeControl = document.getElementById('ambient-volume');
+        let currentAmbientSound; 
+        ambientSounds.forEach(sound => {
+            sound.addEventListener('change', function() {
+                let audioSource = "";
+                switch(this.value) {
+                    case 'forest': audioSource = "FEATURES/ambientsounds/forest.wav"; break;
+                    case 'rain': audioSource = "FEATURES/ambientsounds/rain.wav"; break;
+                    case 'ocean': audioSource = "FEATURES/ambientsounds/ocean.wav"; break;
+                    case 'park': audioSource = "FEATURES/ambientsounds/park.wav"; break;
+                }
+               // Set the source for the ambient sound and play it
+    if (currentAmbientSound) {
+        currentAmbientSound.pause();
+    }
+    currentAmbientSound = new Audio(audioSource);
+    currentAmbientSound.volume = ambientVolumeControl.value / 100;
+    currentAmbientSound.loop = true;
+    currentAmbientSound.play();
+            });
+        });
+
+
+
+        ambientVolumeControl.addEventListener('input', function() {
+  // Adjust volume of the currently playing ambient sound
+  if (currentAmbientSound) {
+    currentAmbientSound.volume = this.value / 100;
+  }
+});
+
+// Add a pause button for ambient sound
+const pauseButton = document.getElementById('pause-button');
+pauseButton.addEventListener('click', function() {
+  if (currentAmbientSound) {
+    if (currentAmbientSound.paused) {
+      currentAmbientSound.play();
+      pauseButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause" viewBox="0 0 16 16">
+          <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5m4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5"/>
+        </svg>
+      `;
+    } else {
+      currentAmbientSound.pause();
+      pauseButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+          <path d="M10.804 8 5 4.633v6.734L10.804 8Z"/>
+        </svg>
+      `;
+    }
+  }
+});
+
+// Add a resume button next to the pause button
+const resumeButton = document.getElementById('resume-button');
+resumeButton.addEventListener('click', function() {
+  if (currentAmbientSound) {
+    currentAmbientSound.play();
+    pauseButton.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause" viewBox="0 0 16 16">
+        <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5m4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5"/>
+      </svg>
+    `;
+    resumeButton.style.display = 'none';
+  }
+});
+
+
+
+
+
+// Music Player JS
+
+const musicPlayer = document.getElementById('music-player');
+const songListElement = document.getElementById('song-list');
+const musicVolumeControl = document.getElementById('music-volume');
+
+// List of songs (you can add or remove songs from this list)
+const songs = [
+{ title: 'Song 1 🎶',  preview_url: 'FEATURES/music/lofi songs for slow days.mp3' },
+  { title: 'Song 2 🎶',  preview_url: 'FEATURES/music/Cozy-Place-Chill-Background-Music(chosic.com).mp3' },
+  { title: 'Song 3 🎶',  preview_url: 'FEATURES/music/deep-lofi-vibes-205062.mp3' },
+  { title: 'Song 4 🎶',  preview_url: 'FEATURES/music/lofi-study-112191.mp3' },
+  { title: 'Song 5🎶',  preview_url: 'FEATURES/music/Sonder(chosic.com).mp3' },
+  { title: 'Song 6 🎶',  preview_url: 'FEATURES/music/Wildflowers-chosic.com_.mp3' },
+ 
+
+];
+
+// Function to render the song list
+function renderSongList() {
+  songListElement.innerHTML = '';
+  songs.forEach((song) => {
+    const songElement = document.createElement('div');
+    songElement.className = 'song';
+    songElement.innerHTML = `
+      <span>${song.title}</span>
+      
+    `;
+    songElement.addEventListener('click', () => {
+      playSong(song);
+    });
+    songListElement.appendChild(songElement);
+  });
+}
+
+// Function to play a song
+function playSong(song) {
+  musicPlayer.src = song.preview_url;
+  musicPlayer.play();
+}
+
+// Volume control event listener
+musicVolumeControl.addEventListener('input', () => {
+  musicPlayer.volume = musicVolumeControl.value / 100;
+});
+
+// Render the song list
+renderSongList();
+
+
+
+        // Themes Control
+const themeSelectors = document.querySelectorAll('input[name="background-theme"]');
+const themeOptions = {
+    "cafe": [
+        "FEATURES/cafe.jpg",
+        
+    ],
+    "winter": [
+        "FEATURES/cozy/winter.jpg",
+        ],
+        
+    "waves": [
+        "FEATURES/cozy/waves.mp4",
+      
+    ],
+    "street": [
+    "FEATURES/cozy/1335810.png",
+       
+    ],
+   
+       
+    "computer": [
+        "FEATURES/cozy/1372963.png",
+       
+    ],
+  
+    "office": [
+        "FEATURES/cozy/1344548.png",
+       
+    ],
+    "sunset": [
+        "FEATURES/cozy/1349195.png",
+       
+    ],
+    "room": [
+        "FEATURES/cozy/1357324.jpeg",
+       
+    ],
+    "bedroom": [
+        "FEATURES/cozy/1349196.png",
+       
+    ],
+    "firewatch": [
+        "FEATURES/cozy/firewatch.jpg",
+       
+    ],
+    "nightcafe": [
+        "FEATURES/cozy/1349198.png",
+       
+    ],
+    "moon": [
+        "FEATURES/cozy/1349201.png",
+       
+    ],
+};
+
+themeSelectors.forEach(theme => {
+    theme.addEventListener('change', function() {
+
+      console.log('Theme changed to:', this.value);
+      const bodyElement = document.body;
+      const theme = this.value;
+        const images = themeOptions[theme];
+        const randomIndex = Math.floor(Math.random() * images.length);
+        const randomImage = images[randomIndex];
+
+        if (theme === 'waves') {
+      const videoElement = document.createElement('video');
+      videoElement.id = 'waves-video';
+      videoElement.src = randomImage;
+      videoElement.loop = true;
+      videoElement.muted = true;
+      videoElement.autoplay = true;
+      bodyElement.appendChild(videoElement);
+
+      // Set the video element to full-screen
+      videoElement.style.position = 'fixed';
+      videoElement.style.top = '0';
+      videoElement.style.left = '0';
+      videoElement.style.width = '100%';
+      videoElement.style.height = '100%';
+      videoElement.style.objectFit = 'cover';
+      videoElement.style.zIndex = '-1';
+    } else {
+      // Remove the video element if it exists
+      const videoElement = document.querySelector('#waves-video');
+      if (videoElement) {
+        videoElement.remove();
+      }
+
+      // Set the background image to the selected theme
+      bodyElement.style.backgroundImage = `url(${randomImage})`;
+    }
+  });
+});
+      
+const leftSidebar = document.getElementById('left-sidebar');
+const rightSidebar = document.querySelector('.sidebar');
+const hideSidebarsBtn = document.getElementById('hide-sidebars-btn');
+const showSidebarsBtn = document.getElementById('show-sidebars-btn');
+
+hideSidebarsBtn.addEventListener('click', () => {
+  leftSidebar.classList.add('hidden');
+  rightSidebar.classList.add('hidden');
+  hideSidebarsBtn.style.display = 'none';
+  showSidebarsBtn.style.display = 'block';
+});
+
+showSidebarsBtn.addEventListener('click', () => {
+  leftSidebar.classList.remove('hidden');
+  rightSidebar.classList.remove('hidden');
+  showSidebarsBtn.style.display = 'none';
+  hideSidebarsBtn.style.display = 'block';
+});
+
+//QUOTE GENERATOR
+const quotes = [
+  "And that his effort is going to be seen. – Surah An-Najm [53:40]",
+
+    "Success is not final, failure is not fatal: It is the courage to continue that counts. – Winston Churchill",
+   "Perhaps you hate a thing and it is good for you. – Surah Al-Baqarah [2:216]",
+    "Don’t watch the clock; do what it does. Keep going. – Sam Levenson",
+    "For indeed, with hardship [will be] ease. Indeed, with hardship [will be] ease. – Surah Ash-Sharh [94:5-6]",
+    "It always seems impossible until it's done. – Nelson Mandela",
+    "Say, 'O My servants who have transgressed against themselves [by sinning], do not despair of the mercy of Allah.' – Surah Az-Zumar [39:53]",
+    "The future depends on what you do today. – Mahatma Gandhi",
+    "So when you have finished [your duties], then stand up [for worship]. And to your Lord direct [your] longing. – Surah Ash-Sharh [94:7-8]",
+    "Don’t stop when you’re tired. Stop when you’re done.",
+    "O you who have believed, persevere and endure and remain stationed and fear Allah that you may be successful. – Surah Aal-e-Imran [3:200]",
+    "You don’t have to be great to start, but you have to start to be great.",
+    "And my success is not but through Allah. – Surah Hud [11:88]",
+    "Believe you can and you're halfway there. – Theodore Roosevelt",
+     "Indeed, with hardship [will be] ease. – Surah Ash-Sharh [94:6]",
+];
+
+function generateQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    document.getElementById('quote').textContent = quotes[randomIndex];
+}
+
+// Generate a quote when the page loads
+window.onload = generateQuote;
+
+
+    </script>
+   
+    
+</body>
+</html>

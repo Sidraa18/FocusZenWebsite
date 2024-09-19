@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/png" href="FEATURES/mainp/FocusZen.png" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="nav__header">
+          <div class="nav__logo">
+            <a href="#">
+              <img src="FEATURES/mainp/FocusZen-removebg-preview.png" alt="Focus Zen Logo" />
+            </a>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <span><i class="ri-menu-line"></i></span>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="studyroom.html">Study Room</a></li>
+          <li><a href="TOdolist.html">To-do list</a></li>
+          <li><a href="sticky notes.html"> Notes</a></li>
+          
+        
+        </ul>
+      
+      </nav>
+      <header class="header__container">
+        <div class="header__image">
+          <div class="header__image__card header__image__card-1">
+<img src="FEATURES/mainp/productivity.png" alt="Image 1">
+           Produtivity
+          </div>
+          <div class="header__image__card header__image__card-2">
+            <img src="FEATURES/mainp/diagramme.png" alt="Image 2" srcset="">
+            Organization
+          </div>
+          <div class="header__image__card header__image__card-3">
+<img src="FEATURES/mainp/heureux.png" alt="Image 3" srcset="">
+           Good Vibes
+          </div>
+          <div class="header__image__card header__image__card-4">
+            <img src="FEATURES/mainp/la-creativite.png" alt="" srcset="">
+           Creativity
+          </div>
+        
+        </div>
+        <div class="header__content">
+          <h1> Yo ! Tired of distractions and feeling overwhelmed? <br />Discover  <span>FocusZen</span> your personal productivity oasis. <br>Start your journey to a more focused and fulfilling life today !</br></h1>
+          <p>
+            Embark on a transformative journey of focus and productivity. Discover the uncharted territories of your mind and unlock your full potential. Your adventure to a more fulfilling life begins here. Are you ready to explore? <img src="FEATURES/mainp/y6.gif" alt="gif" >
+         </p>
+        </div>
+          <footer>Copyright © 2024 Made with <i class="ri-heart-line"></i> by Hajar El Karkouri. </footer>
+        
+      
+      </header>
+      <script src="https://unpkg.com/scrollreveal"></script>
+      <script>
+        const menuBtn = document.getElementById("menu-btn");
+const navLinks = document.getElementById("nav-links");
+const menuBtnIcon = menuBtn.querySelector("i");
+
+menuBtn.addEventListener("click", (e) => {
+  navLinks.classList.toggle("open");
+
+  const isOpen = navLinks.classList.contains("open");
+  menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
+});
+
+navLinks.addEventListener("click", (e) => {
+  navLinks.classList.remove("open");
+  menuBtnIcon.setAttribute("class", "ri-menu-line");
+});
+
+const scrollRevealOption = {
+  distance: "50px",
+  origin: "bottom",
+  duration: 1000,
+};
+
+ScrollReveal().reveal(".header__image img", {
+  ...scrollRevealOption,
+  origin: "right",
+});
+
+ScrollReveal().reveal(".header__content h1", {
+  ...scrollRevealOption,
+  delay: 500,
+});
+
+ScrollReveal().reveal(".header__content p", {
+  ...scrollRevealOption,
+  delay: 1000,
+});
+
+ScrollReveal().reveal(".header__content form", {
+  ...scrollRevealOption,
+  delay: 1500,
+});
+
+ScrollReveal().reveal(".header__content .bar", {
+  ...scrollRevealOption,
+  delay: 2000,
+});
+
+ScrollReveal().reveal(".header__image__card", {
+  duration: 1000,
+  interval: 500,
+  delay: 2500,
+});
+      </script>
+</body>
+</html>

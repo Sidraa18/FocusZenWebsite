@@ -1,0 +1,752 @@
+body {
+  background-image: url("FEATURES/cafe.jpg");
+  background-size: 100% 100%; /* Ensures the image covers the entire background */
+  background-position: center; /* Centers the image */
+  background-attachment: fixed; /* Keeps the background fixed while scrolling */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  height: 100vh; /* Ensures the body takes up the full viewport height */
+  margin: 0; /* Removes default margin */
+  background-color: #000; /* Fallback background color for better transitions */
+  overflow-x: hidden;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-size: cover;
+  }
+}
+@media (min-width: 769px) {
+  body {
+    background-size: cover;
+  }
+}
+#snowflake-toggle {
+  background: linear-gradient(109.6deg, rgb(151, 213, 255) 11.2%, rgb(255, 155, 185) 91.1%);
+  color: #fff !important; /* white text */
+  border: none !important;
+  padding: 10px 20px !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  border-radius: 10px !important; /* add a rounded corner */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important; /* add a subtle shadow */
+  width: 100%;
+}
+
+#snowflake-toggle:hover {
+  background: radial-gradient(circle at 10% 20%, rgb(255, 143, 143) 0%, rgb(255, 248, 182) 100.3%) !important;
+}
+
+#snowflake-toggle:active {
+  transform: translateY(2px) !important; /* add a slight press effect */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important; /* reduce the shadow on press */
+}
+
+/* Snowflake container to hold the snowflakes */
+.snow-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allows interaction with underlying content */
+  overflow: hidden;
+}
+
+/* Snowflake styles */
+.snowflake {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  color: white;
+  font-size: 1em;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: fall linear infinite;
+  will-change: transform;
+}
+
+/* Snowflake falling animation */
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+* {
+  box-sizing: border-box;
+  outline: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+body {
+  align-items: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  display: flex;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00ffb3ce", endColorstr="#6effb5bd", GradientType=1);
+  flex-direction: column;
+  font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  justify-content: center;
+  min-width: 184px;
+  overflow-x: hidden;
+  transition: background-color 0.2s;
+}
+
+#pomodoro {
+  margin-bottom: 43px;
+  max-width: 512px;
+  width: 100%;
+}
+#pomodoro #clock {
+  background: url(https://joeweaver.me/codepenassets/freecodecamp/challenges/build-a-pomodoro-clock/bg.png) no-repeat center center;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -6.25vw;
+  padding: 40vw 0;
+}
+@media all and (min-width: 512px) {
+  #pomodoro #clock {
+    margin-bottom: -32px;
+    padding: 204px 0;
+  }
+}
+@media all and (max-width: 184px) {
+  #pomodoro #clock {
+    margin-bottom: -20px;
+    margin-bottom: -11.5px;
+    padding: 73px 0;
+  }
+}
+#pomodoro #clock #timer {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+#pomodoro #clock #timer #title {
+  color: #FF8B8A;
+  font-size: 28px;
+  line-height: 28px;
+  margin: 3px 0 1px;
+}
+@media all and (max-width: 512px) {
+  #pomodoro #clock #timer #title {
+    font-size: 5.5vw;
+    line-height: 5.5vw;
+  }
+}
+@media all and (max-width: 184px) {
+  #pomodoro #clock #timer #title {
+    font-size: 10px;
+    line-height: 10px;
+  }
+}
+#pomodoro #clock #timer #countdown {
+  color: #ff778d;
+  display: flex;
+  font-size: 43px;
+  font-weight: 600;
+  line-height: 43px;
+}
+@media all and (max-width: 512px) {
+  #pomodoro #clock #timer #countdown {
+    font-size: 8.4vw;
+    line-height: 8.4vw;
+  }
+}
+@media all and (max-width: 184px) {
+  #pomodoro #clock #timer #countdown {
+    font-size: 15.4px;
+    line-height: 15.4px;
+  }
+}
+#pomodoro #clock #timer #countdown #minutes::after {
+  content: ":";
+}
+#pomodoro #clock #timer #controls {
+  align-items: center;
+  display: flex;
+  color: #FF6292;
+  flex-direction: column;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  margin-top: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+#pomodoro #clock #timer #controls .fas, #pomodoro #clock #timer #controls .svg-inline--fa {
+  position: relative;
+}
+#pomodoro #clock #timer #controls #start, #pomodoro #clock #timer #controls #pause, #pomodoro #clock #timer #controls #reset {
+  white-space: nowrap;
+}
+#pomodoro #clock #timer #controls #start .fa-play {
+  font-size: 77%;
+  top: -1px;
+}
+#pomodoro #clock #timer #controls #start:hover {
+  color: #ff4980;
+}
+#pomodoro #clock #timer #controls #pause .fa-pause {
+  font-size: 90%;
+  top: -1px;
+  transform: scaleX(0.84);
+}
+#pomodoro #clock #timer #controls #pause:hover {
+  color: #ff4980;
+}
+#pomodoro #clock #timer #controls #reset {
+  position: absolute;
+  margin-top: 17.56px;
+  transition: margin-top 0.43s, opacity 0.43s;
+}
+#pomodoro #clock #timer #controls #reset .fa-sync-alt {
+  font-size: 84%;
+}
+#pomodoro #clock #timer #controls #reset:hover {
+  color: #ff4980;
+}
+#pomodoro #clock #timer #controls.reset #pause {
+  display: none;
+}
+#pomodoro #clock #timer #controls.reset #reset {
+  margin-top: 0;
+  opacity: 0;
+  z-index: -1;
+}
+#pomodoro #clock #timer #controls.started #start {
+  display: none;
+}
+#pomodoro #clock #timer #controls.started #reset {
+  opacity: 0;
+}
+#pomodoro #clock #timer #controls.paused #pause {
+  display: none;
+}
+@media all and (max-width: 512px) {
+  #pomodoro #clock #timer #controls {
+    font-size: 5.5vw;
+    line-height: 5.5vw;
+  }
+  #pomodoro #clock #timer #controls #start, #pomodoro #clock #timer #controls #pause, #pomodoro #clock #timer #controls #reset {
+    font-size: 3vw;
+    line-height: 3vw;
+  }
+  #pomodoro #clock #timer #controls #reset {
+    margin-top: 3.43vw;
+  }
+}
+@media all and (max-width: 184px) {
+  #pomodoro #clock #timer #controls {
+    font-size: 10px;
+    line-height: 10px;
+  }
+  #pomodoro #clock #timer #controls #start, #pomodoro #clock #timer #controls #pause, #pomodoro #clock #timer #controls #reset {
+    font-size: 5.5px;
+    line-height: 5.5px;
+  }
+  #pomodoro #clock #timer #controls #reset {
+    margin-top: 6.31px;
+  }
+}
+#pomodoro #options {
+  color: #FF6292;
+  display: flex;
+  font-size: 28px;
+  font-weight: normal;
+  justify-content: center;
+  margin-bottom: 28px;
+  text-align: center;
+}
+#pomodoro #options .option-title {
+  color: #FF6F8A;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: -6px;
+  text-transform: uppercase;
+}
+#pomodoro #options .fa-angle-double-up {
+  color: #FF848A;
+  cursor: pointer;
+}
+#pomodoro #options .fa-angle-double-down {
+  color: #FF5792;
+  cursor: pointer;
+}
+#pomodoro #options #session, #pomodoro #options #break {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+#pomodoro #options input[type=number] {
+  background: linear-gradient(#fff0f0, #ffd2e0);
+  border: 0;
+  border-bottom: calc(3px + 0.28vw) solid #FF6292;
+  border-radius: 10px;
+  color: #FF6292;
+  font: bold calc(21px + 1.43vw) "Open Sans", sans-serif;
+  margin: calc(5px + 0.43vw) calc(3px + 0.43vw);
+  padding: calc(3px + 0.43vw) calc(5px + 0.43vw);
+  text-align: center;
+}
+#pomodoro #options input[type=number]::-webkit-inner-spin-button, #pomodoro #options input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+@media all and (min-width: 512px) {
+  #pomodoro #options input[type=number] {
+    border-bottom: 4.43px solid #FF6292;
+    font: bold 28.43px "Open Sans", sans-serif;
+    margin: 7.2px 5.2px;
+    padding: 5.2px 7.2px;
+  }
+}
+@media all and (max-width: 184px) {
+  #pomodoro #options input[type=number] {
+    border-bottom: 3.5px solid #FF6292;
+    font: bold 23.6px "Open Sans", sans-serif;
+    margin: 5.7px 3.7px;
+    padding: 3.7px 5.7px;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 350px;
+  height: 100vh;
+  background: rgba(100, 95, 91, 0.479); /* Semi-transparent background */
+  color: #fdfdfd;
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  transition: transform 0.5s ease-in-out;
+}
+
+.ambient-sounds {
+  background: linear-gradient(to right, rgba(255, 236, 210, 0.5254901961) 0%, rgba(252, 182, 159, 0.3215686275) 100%);
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 270px;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.ambient-sounds h3 {
+  color: #fff;
+  margin-top: 0;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}
+
+.ambient-sounds > label {
+  margin-top: 20px;
+  text-align: center;
+  margin-left: 10px;
+  background: linear-gradient(106.5deg, rgba(255, 215, 185, 0.91) 23%, rgba(223, 159, 247, 0.8) 93%);
+  gap: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100px;
+  height: 30px;
+}
+
+.ambient-sounds input[type=radio] {
+  display: none;
+}
+
+.ambient-sounds > label:hover {
+  background: radial-gradient(circle at 10% 20%, rgb(255, 143, 143) 0%, rgb(255, 248, 182) 100.3%);
+}
+
+.volume-slider {
+  margin-left: 20px;
+  width: 100px;
+}
+
+.music-player {
+  background: linear-gradient(to right, rgba(255, 236, 210, 0.5254901961) 0%, rgba(252, 182, 159, 0.3215686275) 100%);
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 270px;
+  margin: 20px auto;
+}
+
+.music-player h3 {
+  color: #fff;
+  margin-top: 0;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}
+
+.music-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between the grid items */
+  justify-content: center; /* Center the grid content */
+  margin-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+#song-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* adjust the number of columns as needed */
+  gap: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.song {
+  background: linear-gradient(106.5deg, rgba(255, 215, 185, 0.91) 23%, rgba(223, 159, 247, 0.8) 93%);
+  gap: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100px;
+  height: 30px;
+}
+
+.song span {
+  grid-column: 1/-1;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  margin-left: 20px;
+}
+
+.song:hover {
+  background: radial-gradient(circle at 10% 20%, rgb(255, 143, 143) 0%, rgb(255, 248, 182) 100.3%) !important;
+}
+
+.audio-player audio {
+  width: 100%;
+  height: 100%;
+}
+
+.volume-control {
+  margin-top: 50px;
+}
+
+.volume-control-ambient label {
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.themes {
+  background: linear-gradient(to right, rgba(255, 236, 210, 0.5254901961) 0%, rgba(252, 182, 159, 0.3215686275) 100%);
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 270px;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.themes label {
+  text-align: center;
+  margin-left: 10px;
+  background: linear-gradient(106.5deg, rgba(255, 215, 185, 0.91) 23%, rgba(223, 159, 247, 0.8) 93%);
+  gap: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100px;
+  height: 30px;
+}
+
+.themes h3 {
+  color: #fff;
+  margin-top: 0;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}
+
+.themes input[type=radio] {
+  display: none;
+}
+
+.themes label:hover {
+  background: radial-gradient(circle at 10% 20%, rgb(255, 143, 143) 0%, rgb(255, 248, 182) 100.3%);
+}
+
+#waves-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: -1;
+}
+
+/*todolist style*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #000430;
+  --secondaryBackground: #171c48;
+  --text: #fff;
+  --purple: #828dff;
+  --teal: #24feee;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stats-container {
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid rgba(238, 187, 166, 0.377);
+  display: flex;
+  gap: 20px;
+  width: 250px;
+  justify-content: space-between;
+  margin-right: 50px;
+}
+
+.details {
+  width: 100%;
+}
+
+#progressBar {
+  width: 200px;
+  height: 10px;
+  background: linear-gradient(106.5deg, rgba(255, 215, 185, 0.91) 23%, rgba(223, 159, 247, 0.8) 93%);
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+#progress {
+  width: 80%;
+  height: 10px;
+  background: radial-gradient(circle at 10% 20%, rgb(255, 143, 143) 0%, rgb(255, 248, 182) 100.3%);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+form {
+  margin-top: 30px;
+  width: 300px;
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  background: linear-gradient(to right, rgba(255, 236, 210, 0.5254901961) 0%, rgba(252, 182, 159, 0.3215686275) 100%);
+  border: 1px solid rgba(238, 187, 166, 0.377);
+  border-radius: 5px;
+  outline: none;
+  color: var(--text);
+}
+
+#numbers {
+  width: 65px;
+  height: 65px;
+  background: linear-gradient(106.5deg, rgba(255, 215, 185, 0.91) 23%, rgba(223, 159, 247, 0.8) 93%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 17px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.container button {
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(106.5deg, rgba(255, 215, 185, 0.91) 23%, rgba(223, 159, 247, 0.8) 93%);
+  color: var(--text);
+  font-size: 30px;
+  font-weight: bold;
+  outline: none;
+}
+
+.container button:hover {
+  background: radial-gradient(circle at 10% 20%, rgb(255, 143, 143) 0%, rgb(255, 248, 182) 100.3%);
+}
+
+#task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 30px;
+  width: 250px;
+  list-style: none;
+  margin-right: 117px;
+}
+
+.taskItem {
+  width: 250px;
+  display: flex;
+  background: linear-gradient(106.5deg, rgba(255, 215, 185, 0.91) 23%, rgba(223, 159, 247, 0.8) 93%);
+  padding: 5px;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.taskItem img {
+  width: 24px;
+  height: 24px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.task input {
+  width: 20px;
+  height: 20px;
+}
+
+.completed p {
+  text-decoration: line-through;
+  color: rgb(243, 176, 210);
+}
+
+#progress {
+  height: 100%;
+  width: 0%;
+  background-color: green; /* Default color */
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+#progress[style*="width: 0%"] {
+  background-color: transparent; /* Hide color when width is 0% */
+}
+
+#left-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 370px;
+  height: 100vh;
+  background: rgba(100, 95, 91, 0.479); /* Optional background color */
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#hide-sidebars-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(109.6deg, rgb(151, 213, 255) 11.2%, rgb(255, 155, 185) 91.1%);
+  color: #ffffff;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  margin-bottom: 20px;
+}
+
+#show-sidebars-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(109.6deg, rgb(151, 213, 255) 11.2%, rgb(255, 155, 185) 91.1%);
+  color: #ffffff;
+  cursor: pointer;
+  width: 250px;
+  display: block;
+  align-content: center;
+}
+
+#hide-sidebars-btn:hover, #show-sidebars-btn:hover {
+  background: radial-gradient(circle at 10% 20%, rgb(255, 143, 143) 0%, rgb(255, 248, 182) 100.3%) !important;
+}
+
+#left-sidebar, .sidebar {
+  transition: transform 0.5s ease-in-out;
+  position: fixed; /* Ensure the sidebars stay in place */
+  top: 0;
+  bottom: 0;
+}
+
+.sidebar {
+  right: 0;
+}
+
+#left-sidebar {
+  left: 0; /* Attach to the left side of the screen */
+}
+
+#left-sidebar.hidden {
+  transform: translateX(-100%); /* Adjusted to move sidebars out of view */
+}
+
+.sidebar.hidden {
+  transform: translateX(100%);
+}
+
+#show-sidebars-btn {
+  display: none; /* Initially hidden */
+}
+
+#quote-container {
+  background: linear-gradient(to right, rgba(255, 236, 210, 0.5254901961) 0%, rgba(252, 182, 159, 0.3215686275) 100%);
+  padding: 5px;
+  border-radius: 20px;
+  width: 100%;
+  margin-bottom: 25px;
+  color: #fff;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+#quote {
+  font-style: italic;
+}
+
+button {
+  background: linear-gradient(109.6deg, rgb(151, 213, 255) 11.2%, rgb(255, 155, 185) 91.1%);
+  color: white;
+  border: none;
+  padding: 2x;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background: radial-gradient(circle at 10% 20%, rgb(255, 143, 143) 0%, rgb(255, 248, 182) 100.3%) !important;
+}

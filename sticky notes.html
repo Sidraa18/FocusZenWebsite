@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="shortcut icon" type="image/png" href="FEATURES/notes.png" />
+    <link rel="stylesheet" href="stickynotes.css">
+    <link  href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+    
+</head>
+
+<body>
+
+    <nav  class="sidebar">
+        <div class="logo-menu">
+            <h2 class="logo"><img src="FEATURES/mainp/FocusZen-removebg-preview.png" > <i class="bx bx-menu toggle-btn"></i></h2>
+           
+        </div>
+        <ul class="list">
+            <li class="list-item active">
+                
+                    <a href="index.html">
+                        <img src="FEATURES/mainp/maison.png" >
+                        &nbsp; <span class="link-name" style="--i:1;">Home</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                <a href="studyroom.html">
+                    <img src="FEATURES/mainp/study.png" >
+                    &nbsp;<span class="link-name" style="--i:2;"> My study room</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="TOdolist.html">
+                    <img src="FEATURES/mainp/tache-terminee.png" >
+                    &nbsp; <span class="link-name" style="--i:3;">My to-do list</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="sticky notes.html">
+                    <img src="FEATURES/mainp/notes.png" >
+                    &nbsp;<span class="link-name" style="--i:4;"> My notes</span>
+                </a>
+            </li>
+           
+            
+        </ul>
+     </nav>
+     <script>
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.querySelector('.toggle-btn');
+    
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+     </script>
+
+
+<div class="quote">       
+     <div id="sticky-note-quote" class="sticky-note-quote">
+
+     </div>
+    </div>
+    <div class="main-container">
+
+        <div class="container1">
+            <button class="btn btn-success" onclick="typeNote()">Create Note</button>
+        </div>
+        <div class="container2" id="all_notes"></div>
+        <div class="container3">
+            <form>
+                <textarea id="note-text" placeholder="Write your note here...." maxlength="96"></textarea>
+                <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+                </svg>
+                <svg id="x-icon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                </svg>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const stickyNotesQuotes = [
+    "❝ Big ideas start with small notes.❞",
+    "❝ Your thoughts matter—write them down.❞",
+    "❝ A note today, a plan tomorrow.❞",
+    "❝ Capture your ideas before they fly away.❞",
+    "❝ Small notes lead to big accomplishments.❞",
+    "❝ Your notes are the first step toward action.❞",
+    "❝ Great things are done by jotting them down first.❞",
+    "❝ Put it in a note, and you won't forget.❞",
+    "❝ Notes are the building blocks of productivity.❞",
+    "❝ Every great plan starts with a simple note.❞"
+];
+
+function displayStickyNoteQuote() {
+    const stickyQuoteElement = document.getElementById("sticky-note-quote");
+    const randomIndex = Math.floor(Math.random() * stickyNotesQuotes.length);
+    stickyQuoteElement.textContent = stickyNotesQuotes[randomIndex];
+}
+
+window.onload = function() {
+displayStickyNoteQuote ();
+
+        var container2 = document.getElementsByClassName("container2")[0];
+        var container3 = document.getElementsByClassName("container3")[0];
+        var checkIcon = document.getElementById("check-icon");
+        var xIcon = document.getElementById("x-icon");
+        var i = 0;
+
+        xIcon.addEventListener("click", function(){
+            typeNote();
+        });
+        checkIcon.addEventListener("click", function(){
+            createNote();
+        });
+        var createNoteButton = document.querySelector('.btn-success');
+    createNoteButton.addEventListener('click', function() {
+        typeNote();
+    });
+
+
+
+
+
+
+        function typeNote() {
+            if (container3.style.display === "none" || container3.style.display === "") {
+                container3.style.display = "block";
+            } else {
+                container3.style.display = "none";
+            }
+        }
+
+        function createNote() {
+    var noteText = document.getElementById("note-text").value;
+    var node0 = document.createElement("div");
+    var node1 = document.createElement("h1");
+    var node2 = document.createElement("button");
+  
+
+    node1.innerHTML = noteText;
+    node1.setAttribute("style",  " color:#393e46; width:250px; height:250px; font-size: 15px; padding: 25px; margin-top:10px; overflow:hidden; box-shadow: 0px 10px 24px 0px rgba(0, 0, 0, 0.75); word-wrap: break-word;");
+
+    node1.style.margin = margin();
+    node1.style.transform = rotate();
+    node1.style.background = color();
+
+    node2.textContent = "Delete";
+  node2.style.position = "absolute";
+  node2.style.top = "10px";
+  node2.style.right = "10px";
+  node2.style.background = "red";
+  node2.style.color = "white";
+  node2.style.border = "none";
+  node2.style.padding = "2px 2px";
+  node2.style.cursor = "pointer";
+  node2.style.fontSize = "2px";
+
+
+    node0.appendChild(node1);
+    node0.appendChild(node2);
+
+    container2.insertAdjacentElement("beforeend", node0);
+
+    node0.addEventListener("mouseenter", function() {
+        node0.style.transform = "scale(1.1)";
+       })
+
+       node0.addEventListener("mouseleave",function(){
+        node0.style.transform="scale(1)";
+       })
+       node2.addEventListener("click", function() {
+    node0.remove();
+  })
+  document.getElementById("note-text").value = '';
+// Retrieve notes from localStorage
+var notes = JSON.parse(localStorage.getItem('stickyNotes') || '[]');
+
+// Add new note to the array
+notes.push({ text: noteText, style: node1.style.cssText });
+
+// Store the notes back in localStorage
+localStorage.setItem('stickyNotes', JSON.stringify(notes));
+}
+
+        function margin() {
+            var random_margin = ["-5px", "1px", "5px", "10px", "15px", "20px"];
+            return random_margin[Math.floor(Math.random() * random_margin.length)];
+        }
+
+        function rotate() {
+            var random_rotate = ["rotate(3deg)", "rotate(1deg)", "rotate(-1deg)", "rotate(-3deg)", "rotate(-5deg)", "rotate(-10deg)"];
+            return random_rotate[Math.floor(Math.random() * random_rotate.length)];
+        }
+
+        function color() {
+            var random_color = ["#c2ff3d", "#ff3de8", "#3dc2ff", "#04e022", "#bc83e6", "#ebb328"];
+            if (i >= random_color.length) {
+                i = 0;
+            }
+            return random_color[i++];
+        }
+
+
+        // Load notes from localStorage on page load
+    var notes = JSON.parse(localStorage.getItem('stickyNotes') || '[]');
+    notes.forEach(function(note) {
+        var node0 = document.createElement("div");
+        var node1 = document.createElement("h1");
+        var node2 = document.createElement("button");
+
+        node1.innerHTML = note.text;
+        node1.style.cssText = note.style;
+
+        node2.textContent = "Delete";
+        node2.style.position = "absolute";
+        node2.style.top = "10px";
+        node2.style.right = "10px";
+        node2.style.background = "red";
+        node2.style.color = "white";
+        node2.style.border = "none";
+        node2.style.padding = "5px 10px";
+        node2.style.cursor = "pointer";
+
+        node0.appendChild(node1);
+        node0.appendChild(node2);
+
+        container2.insertAdjacentElement("beforeend", node0);
+
+        node0.addEventListener("mouseenter", function() {
+            node0.style.transform = "scale(1.1)";
+        })
+
+        node0.addEventListener("mouseleave",function(){
+            node0.style.transform="scale(1)";
+        })
+
+        node2.addEventListener("click", function() {
+            node0.remove();
+            // Remove the note from localStorage
+            var notes = JSON.parse(localStorage.getItem('stickyNotes') || '[]');
+            var index = notes.findIndex(function(n) {
+                return n.text === node1.textContent;
+            });
+            if (index !== -1) {
+                notes.splice(index, 1);
+                localStorage.setItem('stickyNotes', JSON.stringify(notes));
+            }
+        })
+    });
+}
+    </script>
+
+</body>
+</html>

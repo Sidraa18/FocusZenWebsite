@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+.sticky-note-quote {
+    font-size:2rem;
+    font-style: italic;
+    color: #242323;
+    text-align: center;
+   margin-top: 20px;
+    font-family: "Pacifico", cursive;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 80px;
+ /* background: #9fd4e957;*/
+  padding: 15px 14px;
+  transition: .5s;
+  background: transparent;
+  backdrop-filter: blur(40px);
+  border-right: 2px solid rgba(255, 255,255,.2);
+box-shadow: 0 0 10px rgba(0, 0, 0,.2);
+}
+.sidebar.active{
+    width: 260px;
+}
+ .sidebar .logo-menu .logo img{
+    width: 175px;
+    
+    pointer-events: none; 
+    opacity: 0;
+    transition: .3s;
+  
+ }
+ .sidebar.active .logo-menu .logo img{
+    opacity: 1;
+    transition-delay: .2s;
+ }
+
+ .sidebar .logo-menu .toggle-btn{
+   position: relative;
+    width: 40px;
+    height: 40px;
+    background: rgba(183, 216, 212, 0.384);
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    left:1rem;
+    transform: translateX(-50%);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: .5s;
+    
+ }
+ .sidebar.active .logo-menu .toggle-btn{
+    left: 2rem;
+ }
+ .sidebar .list{
+    margin-top: 50px;
+ }
+ .list .list-item{
+    list-style: none;
+    width: 100%;
+    height: 50px;
+    
+  margin: 25px 0;
+  line-height: 50px;
+ }
+ .list .list-item a{
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    background: #9fd4e957;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    white-space: nowrap;
+  
+ }
+ .list .list-item a img{
+  width:30px ;
+    height: 30px;
+    text-align: center;
+    line-height: 50px;
+   
+ }
+ .list .list-item a:hover{
+background: #0ea1db57;
+ 
+
+ }
+
+ .sidebar .link-name{
+    opacity: 0;
+    pointer-events: none;
+ }
+ .sidebar.active .link-name{
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: calc(.1s * var(--i));
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+* { padding: 0; margin: 0; }
+body { 
+    position: relative; 
+    background: url('FEATURES/backdrop-background-blank-board.jpg');
+    font-family: 'Architects Daughter', cursive; 
+   
+   
+    min-height: 100vh; 
+    overflow: hidden; 
+}
+
+.main-container { 
+    width: 95%; 
+    margin: auto; 
+ 
+
+}
+
+.container1 { 
+    margin-left: 5%; 
+}
+
+.container2 { 
+    display: flex; 
+    justify-content: flex-start; 
+    flex-wrap: wrap; 
+    margin-top: 20px; 
+    margin-left: 5%; 
+}
+
+.container3 { 
+    display: none; 
+    position: absolute; 
+    top: 26%; 
+    left: 40%; 
+}
+
+textarea { 
+    box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75); 
+    outline: none; 
+    border: none; 
+    width: 275px; 
+    height: 275px; 
+    padding: 40px 25px 25px 25px; 
+    margin: auto; 
+   /* display: block; 
+    position: relative; */
+    word-wrap: break-word   ;
+    overflow: auto;
+}
+
+svg { 
+    color: gray; 
+    position: absolute; 
+    top: 40px; 
+    transform: translateY(-50%); 
+    gap: 10px; 
+}
+
+#check-icon { 
+    right: 50px; 
+} 
+#x-icon { 
+    right: 20px; 
+}
+
+button { 
+    position: absolute; 
+    top: 100px; /* Adjust this value as needed */ 
+    right: 60px; 
+    padding: 10px 20px; 
+    background-color: #fff; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-family: inherit; 
+    font-size: 1.25rem; 
+}
+
+button:hover { 
+    color: white; 
+    background-color: rgb(28, 202, 22);
+}
+
+
+@media (max-width: 1280px) { 
+    .container { 
+        width: 100%; 
+    } 
+}
+
+@media (max-width: 768px) { 
+    #header { 
+        padding: 20px; 
+        gap: 10px; 
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center; 
+    } 
+}

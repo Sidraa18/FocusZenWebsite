@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to-do list</title>
+    <link rel="stylesheet" href="todolist.css">
+    <link  href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="FEATURES/mainp/tache-terminee.png" />
+</head>
+<body>
+    <nav  class="sidebar">
+        <div class="logo-menu">
+            <h2 class="logo"><img src="FEATURES/mainp/FocusZen-removebg-preview.png" > <i class="bx bx-menu toggle-btn"></i></h2>
+           
+        </div>
+        <ul class="list">
+            <li class="list-item active">
+                
+                    <a href="index.html">
+                        <img src="FEATURES/mainp/maison.png" >
+                        &nbsp; <span class="link-name" style="--i:1;">Home</span>
+                    </a>
+                </li>
+                <li class="list-item">
+                <a href="studyroom.html">
+                    <img src="FEATURES/mainp/study.png" >
+                    &nbsp;<span class="link-name" style="--i:2;"> My study room</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="TOdolist.html">
+                    <img src="FEATURES/mainp/tache-terminee.png" >
+                    &nbsp; <span class="link-name" style="--i:3;">My to-do list</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="sticky notes.html">
+                    <img src="FEATURES/mainp/notes.png" >
+                    &nbsp;<span class="link-name" style="--i:4;"> My notes</span>
+                </a>
+            </li>
+           
+            
+        </ul>
+     </nav>
+     <script>
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.querySelector('.toggle-btn');
+    
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+     </script>
+
+<div id="quote" class="motivational-quote"></div>
+
+
+    <div class="container">
+        <div class="stats-container">
+        <div class="details">
+        <h1>My To-do List :</h1>
+        <br>
+        <p>Keep it up!    <img src="FEATURES/mainp/5de-unscreen.gif" > </p> 
+      
+        <div id="progressBar">  
+        <div id="progress"> </div>
+        </div>
+        </div>
+        <div class="stats-numbers">
+        <p id="numbers">0/0</p>
+        </div>
+        </div>
+        <form action="">
+            <input type="text"  id="taskInput" placeholder="Write your task here">
+            <button id="newTask" type="submit">+</button>
+        </form>
+        <ul id="task-list"> </ul>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <script>
+const quotes = [
+  "❝ The secret to getting ahead is getting started.❞ ",
+  "❝ Believe you can and you're halfway there.❞",
+  "❝ Success is not final, failure is not fatal: It is the courage to continue that counts.❞",
+  " ❝ Don't watch the clock; do what it does. Keep going.❞",
+  " ❝ The future depends on what you do today.❞",
+];
+
+function displayQuote() {
+  const quoteElement = document.getElementById("quote");
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  quoteElement.textContent = quotes[randomIndex];
+}
+
+window.onload = displayQuote;
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+    
+        if (storedTasks) {
+            storedTasks.forEach((task) => tasks.push(task));
+            updateTaskList();
+            updateStats();
+        }
+    });
+    
+    let tasks = [];
+    
+    const saveTasks = () => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    };
+    
+    const addTask = () => {
+        const taskInput = document.getElementById("taskInput");
+        const text = taskInput.value.trim();
+    
+        if (text) {
+            tasks.push({ text: text, completed: false });
+            taskInput.value = "";
+            updateTaskList();
+            saveTasks();
+        }
+    };
+    
+    const toggleTaskComplete = (index) => {
+        tasks[index].completed = !tasks[index].completed;
+        updateTaskList();
+        updateStats();
+        saveTasks();
+    };
+    
+    const deleteTask = (index) => {
+        tasks.splice(index, 1);
+        updateTaskList();
+        updateStats();
+        saveTasks();
+    };
+    
+    const editTask = (index) => {
+        const taskInput = document.getElementById("taskInput");
+        taskInput.value = tasks[index].text;
+    
+        tasks.splice(index, 1);
+        updateTaskList();
+        updateStats();
+        saveTasks();
+    };
+    
+    const updateStats = () => {
+        const completedTasks = tasks.filter(task => task.completed).length;
+        const totalTasks = tasks.length;
+    
+        // Update the numbers display
+        document.getElementById("numbers").innerText = `${completedTasks} / ${totalTasks}`;
+    
+        // Calculate progress
+        let progress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+    
+        // Update the progress bar
+        const progressBar = document.getElementById("progress");
+        progressBar.style.width = `${progress}%`;
+    
+        // Reset or update the color if there's no progress or tasks
+        if (progress === 0) {
+            progressBar.style.backgroundColor = "transparent";  // Hide the color if no progress
+        } else {
+            progressBar.style.backgroundColor = ""; // Use default color if there's progress
+        }
+    
+        // Trigger confetti if all tasks are completed
+        if (tasks.length && completedTasks === totalTasks) {
+            blaskConfetti();
+        }
+    };
+    
+    const updateTaskList = () => {
+        const taskList = document.getElementById("task-list");
+        taskList.innerHTML = "";
+    
+        tasks.forEach((task, index) => {
+            const listItem = document.createElement('li');
+    
+            listItem.innerHTML = `
+            <div class="taskItem">
+                <div class="task ${task.completed ? 'completed' : ''}">
+                    <input type="checkbox" class="checkbox" ${task.completed ? "checked" : ""} />
+                    <p>${task.text}</p>
+                </div>
+                <div class="icons">
+                    <img src="FEATURES/edit.png" onclick="editTask(${index})" />
+                    <img src="FEATURES/bin.png" onclick="deleteTask(${index})" />
+                </div>
+            </div>
+            `;
+    
+            listItem.querySelector('.checkbox').addEventListener('change', () => toggleTaskComplete(index));
+            taskList.appendChild(listItem);
+        });
+    
+        updateStats();
+    };
+    
+    document.getElementById("newTask").addEventListener("click", function(e) {
+        e.preventDefault();
+        addTask();
+    });
+    
+    const blaskConfetti = () => {
+        const count = 200,
+            defaults = {
+                origin: { y: 0.7 },
+            };
+    
+        function fire(particleRatio, opts) {
+            confetti(
+                Object.assign({}, defaults, opts, {
+                    particleCount: Math.floor(count * particleRatio),
+                })
+            );
+        }
+    
+        fire(0.25, {
+            spread: 26,
+            startVelocity: 55,
+        });
+    
+        fire(0.2, {
+            spread: 60,
+        });
+    
+        fire(0.35, {
+            spread: 100,
+            decay: 0.91,
+            scalar: 0.8,
+        });
+    
+        fire(0.1, {
+            spread: 120,
+            startVelocity: 25,
+            decay: 0.92,
+            scalar: 1.2,
+        });
+    
+        fire(0.1, {
+            spread: 120,
+            startVelocity: 45,
+        });
+    };
+    </script>
+</body>
+</html>

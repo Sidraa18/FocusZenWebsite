@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title > Sidebar</title>
+    <link rel="stylesheet" href="sidebar.css">
+    <link  href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+</head>
+<body>
+ <nav  class="sidebar">
+    <div class="logo-menu">
+        <h2 class="logo"><img src="mainp/FocusZen-removebg-preview.png" > <i class="bx bx-menu toggle-btn"></i></h2>
+       
+    </div>
+    <ul class="list">
+        <li class="list-item active">
+            
+                <a href="mainpage.html">
+                    <img src="mainp/maison.png" >
+                    &nbsp; <span class="link-name" style="--i:1;">Home</span>
+                </a>
+            </li>
+            <li class="list-item">
+            <a href="studyroom.html">
+                <img src="mainp/study.png" >
+                &nbsp;<span class="link-name" style="--i:2;"> My study room</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="TOdolist.html">
+                <img src="mainp/tache-terminee.png" >
+                &nbsp; <span class="link-name" style="--i:3;">My to-do list</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="sticky notes.html">
+                <img src="mainp/notes.png" >
+                &nbsp;<span class="link-name" style="--i:4;"> My notes</span>
+            </a>
+        </li>
+        <li class="list-item">
+            <a href="timeline.html">
+                <img src="mainp/chronologie.png" >
+                &nbsp;<span class="link-name" style="--i:5;"> My timeline</span>
+            </a>
+        </li>
+        
+    </ul>
+ </nav>
+ <script>
+    const sidebar = document.querySelector('.sidebar');
+    const toggleBtn = document.querySelector('.toggle-btn');
+
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+    });
+ </script>
+</body>
+</html>
